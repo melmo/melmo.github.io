@@ -23,29 +23,52 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    
+    <a href="#main" class="skip-nav">Skip navigation</a>
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="#">WAI Landmark Roles</a></li>
-          <li class="active"><a href="#">Tab Index</a></li>
-          <li><a href="#">Skip Nav</a></li>
-          <li><a href="#">Leaflet</a></li>
-          <li><a href="#">Owl Carousel</a></li>
-          <li><a href="#">Isotope</a></li>
-        </ul>
+      <div class="header" role="banner">
         <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
+        <ul class="nav nav-pills pull-left" role="navigation">
+          <li><a href="/index.html">WAI Landmark Roles</a></li>
+          <li class="active"><a href="/tabindex.html">Tab Index</a></li>
+          <li><a href="/skipnav.html">Skip Nav</a></li>
+          <li><a href="/leaflet.html">Leaflet</a></li>
+          <li><a href="/owlcarousel.html">Owl Carousel</a></li>
+          <li><a href="/isotope.html">Isotope</a></li>
+        </ul>
+        
       </div>
 
 
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8" role="main" id="main">
           <h1>Tab Index</h1>
+          <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p>
+          <h2>jQuery</h2>
+<pre>jQuery(document).ready(function($) {
+  $('a, input, select, button, textarea, #main').attr('tabindex',0);
+});</pre>
+          <h2>Native Javascript</h2>
+<pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
+
+for (var i = 0; i < tabbable.length; i++) {
+  var elem = document.getElementsByTagName(tabbable[i]);
+  for (var j = 0; j < elem.length; j++) {
+    elem[j].setAttribute('tabindex', 0);
+  }
+}
+
+if (document.getElementById('main') !== null) {
+  document.getElementById('main').setAttribute('tabindex',0);
+}</pre> 
+        </div>
+        <div class="col-sm-4" role="complementary">
+          <h2>Useful Links about Tab Index</h2>
+          
         </div>
       </div>
 
-      <div class="footer">
-        <p></p>
+      <div class="footer" role="contentinfo">
+        <p>&copy; 2015 <a href="http://littlewebgiants.com">Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="http://melmo.github.io/accessibility/berlin.js/slides/">Slides</a> </p>
       </div>
     </div>
     
