@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Better Accessibility with Javascript | Code Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    
+    <div class="container">
+      <div class="header" role="banner">
+        <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
+        <ul class="nav nav-pills pull-left" role="navigation">
+          <li class="active"><a href="#">WAI Landmark Roles</a></li>
+          <li><a href="#">Tab Index</a></li>
+          <li><a href="#">Skip Nav</a></li>
+          <li><a href="#">Leaflet</a></li>
+          <li><a href="#">Owl Carousel</a></li>
+          <li><a href="#">Isotope</a></li>
+        </ul>
+        
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-8" role="main">
+          <h1>WAI Landmark Roles</h1>
+          <p>Landmark roles are regions of the page intended as navigational landmarks. They include the following:</p>
+          <ul>
+            <li><strong>application</strong> - A region declared as a web application, as opposed to a web document. Returns control of input events to the browser and indicates that the content of the section may be dynamically updated.</li>
+            <li><strong>banner</strong> - A region that contains mostly site-oriented content, rather than page-specific content. Typically the site's masthead.</li>
+            <li><strong>complementary</strong> - A supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content. Typically sidebar content.</li>
+            <li><strong>contentinfo</strong> - A large perceivable region that contains information about the parent document, such metadata or copyright information. Often applied to the footer.</li>
+            <li><strong>form</strong> - A form or collection of elements that acts a form.</li>
+            <li><strong>main</strong> - The main content of a document.</li>
+            <li><strong>navigation</strong> - A collection of navigational elements (usually links) for navigating the document or related documents.</li>
+            <li><strong>search</strong> - A search form or collection of elements that provide search functionality.</li>  
+          </ul>
+        </div>
+        <div class="col-sm-4" role="complementary">
+          <h2>Useful Links about WAI Landmark Roles</h2>
+          <ul>
+            <li><a href="http://alistapart.com/column/wai-finding-with-aria-landmark-roles">WAI-finding with ARIA Landmark Roles</a> on A List Apart</li>
+            <li><a href="http://www.w3.org/TR/wai-aria/roles#landmark_roles">W3C Documentation</a></li>
+            <li><a href="http://www.w3.org/WAI/GL/wiki/Using_ARIA_landmarks_to_identify_regions_of_a_page">Using ARIA landmarks to identify regions of a page</a></li>
+            <li><a href="http://www.paciellogroup.com/blog/2013/02/using-wai-aria-landmarks-2013/">Using WAI-ARIA Landmarks – 2013</a></li>
+        </div>
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <p>&copy; 2015 <a href="http://littlewebgiants.com">Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="http://melmo.github.io/accessibility/berlin.js/slides/">Slides</a> </p>
+      </div>
+    </div>
+    
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>
