@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Better Accessibility with Javascript | Code Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.b25e58c4.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.9727d3c2.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+
+    <link rel="stylesheet" href="styles/main.49f31def.css">
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <a href="#main" class="skip-nav">Skip navigation</a>
+    <div class="container">
+      <div class="header" role="banner">
+        <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
+        <ul class="nav nav-pills pull-left" role="navigation">
+          <li><a href="index.html">WAI Landmark Roles</a></li>
+          <li class="active"><a href="tabindex.html">Tab Index</a></li>
+          <li><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="leaflet.html">Leaflet</a></li>
+          <li><a href="owlcarousel.html">Owl Carousel</a></li>
+          <li><a href="isotope.html">Isotope</a></li>
+        </ul>
+        
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-8" role="main" id="main">
+          <h1>Tab Index</h1>
+          <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p>
+          <h2>jQuery</h2>
+<pre>jQuery(document).ready(function($) {
+  $('a, input, select, button, textarea, #main').attr('tabindex',0);
+});</pre>
+          <h2>Native Javascript</h2>
+<pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
+
+for (var i = 0; i < tabbable.length; i++) {
+  var elem = document.getElementsByTagName(tabbable[i]);
+  for (var j = 0; j < elem.length; j++) {
+    elem[j].setAttribute('tabindex', 0);
+  }
+}
+
+if (document.getElementById('main') !== null) {
+  document.getElementById('main').setAttribute('tabindex',0);
+}</pre> 
+        </div>
+        <div class="col-sm-4" role="complementary">
+          <h2>Useful Links about Tab Index</h2>
+          
+        </div>
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <p>&copy; 2015 <a href="http://littlewebgiants.com">Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="http://melmo.github.io/accessibility/berlin.js/slides/">Slides</a> </p>
+      </div>
+    </div>
+    
+
+    <script src="scripts/vendor.5259f88d.js"></script>
+
+    
+    <script src="scripts/plugins.cb7562c6.js"></script>
+    
+
+    <script src="scripts/main.9d83e24d.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>
