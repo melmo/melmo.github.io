@@ -11,6 +11,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
@@ -29,8 +30,8 @@
         <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
         <ul class="nav nav-pills pull-left" role="navigation">
           <li><a href="index.html">WAI Landmark Roles</a></li>
-          <li class="active"><a href="tabindex.html">Tab Index</a></li>
-          <li><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="tabindex.html">Tab Index</a></li>
+          <li class="active"><a href="skipnav.html">Skip Nav</a></li>
           <li><a href="leaflet.html">Leaflet</a></li>
           <li><a href="owlcarousel.html">Owl Carousel</a></li>
           <li><a href="isotope.html">Isotope</a></li>
@@ -41,26 +42,46 @@
 
       <div class="row">
         <div class="col-sm-8" role="main" id="main">
-          <h1>Tab Index</h1>
-          <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p>
-          <p>Setting all elements to <code>tabindex="0"</code> means they will be focused in the order they appear in the document.</p>
-          <h2>jQuery</h2>
-<pre>jQuery(document).ready(function($) {
-  $('a, input, select, button, textarea').attr('tabindex',0);
-});</pre>
-          <h2>Native Javascript</h2>
-<pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
+          <h1>Leaflet.js</h1>
+          <p>Leaflet is an open-source JavaScript library for mobile-friendly interactive maps.</p>
+          <p>With small adaptations, Leaflet.js maps can be made far more accessible. First, we prevent the screen reader from reading out the alt text for every map tile.</p>
+          <pre>// remove the shadow pane (otherwise each shadow image is read out)
+$('.leaflet-shadow-pane').remove();
+    
+// prevent screen readers from reading out each map tile
+$('.leaflet-tile-container img, .leaflet-shadow-pane img').attr('role','presentation').attr('alt','');</pre>
+          <p>Second, adjust the behaviour of popups so that focus is shifted to the popup content when it is opened, and returned to the icon when it is closed. Also, we can move the close button so that it is focused after the popup content, allowing a screen reader or keyboard user to close the content and return to the map.</p>
+          <pre>map.on('popupopen',function(popup) { 
 
-for (var i = 0; i < tabbable.length; i++) {
-  var elem = document.getElementsByTagName(tabbable[i]);
-  for (var j = 0; j < elem.length; j++) {
-    elem[j].setAttribute('tabindex', 0);
-  }
-}
-</pre> 
+  // shift focus to the popup when it opens     
+  $(popup.popup._container).find('.my-popup-content').attr('tabindex','-1').focus();
+
+  // move the close button to the end of the popup content so screen readers reach it
+  // after the main popup content, not before
+  var close = $(popup.popup._container).find('.leaflet-popup-close-button');
+  $(popup.popup._container).find('.leaflet-popup-close-button').remove();
+  close.attr('title','Close item');
+  $(popup.popup._container).append(close);
+
+});
+
+// return focus to the icon we started from before opening the pop up
+map.on('popupclose',function(popup) {
+  $(popup.popup._source._icon).focus();
+});</pre>
+          <h2 tabindex="0">Normal Map</h2>
+          <div id="badmap" class="leaflet-map">
+          </div>
+          <h2 tabindex="0">A Better Map</h2>
+          <div id="goodmap" class="leaflet-map">
+          </div>
+
         </div>
         <div class="col-sm-4" role="complementary">
-          <h2>Useful Links about Tab Index</h2>
+          <h2>Useful Links about Leaflet.js</h2>
+          <ul>
+            <li><a href=""></a></li>
+          </ul>
           
         </div>
       </div>
@@ -91,6 +112,8 @@ for (var i = 0; i < tabbable.length; i++) {
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <!-- endbuild -->
     
 

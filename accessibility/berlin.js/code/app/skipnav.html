@@ -29,8 +29,8 @@
         <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
         <ul class="nav nav-pills pull-left" role="navigation">
           <li><a href="index.html">WAI Landmark Roles</a></li>
-          <li class="active"><a href="tabindex.html">Tab Index</a></li>
-          <li><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="tabindex.html">Tab Index</a></li>
+          <li class="active"><a href="skipnav.html">Skip Nav</a></li>
           <li><a href="leaflet.html">Leaflet</a></li>
           <li><a href="owlcarousel.html">Owl Carousel</a></li>
           <li><a href="isotope.html">Isotope</a></li>
@@ -41,26 +41,34 @@
 
       <div class="row">
         <div class="col-sm-8" role="main" id="main">
-          <h1>Tab Index</h1>
-          <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p>
-          <p>Setting all elements to <code>tabindex="0"</code> means they will be focused in the order they appear in the document.</p>
-          <h2>jQuery</h2>
-<pre>jQuery(document).ready(function($) {
-  $('a, input, select, button, textarea').attr('tabindex',0);
-});</pre>
+          <h1>Skip Navigation Link</h1>
+          <p>Allows users to skip over the main navigation and jump directly to the main content of the page. There's some debate about whether this is neccessary if you use WAI-ARIA landmarks, but current best practice seems to be to use both.</p>
+          <p>Unfortunately, in some webkit browsers focus is not applied correctly on internal (#hash) links. This means that screen readers don't jump to the correct point when the skip navigation link is clicked/selected with the keyboard. To fix this, use the following javascript polyfill. When an internal link is clicked, the target element is given a tabindex of -1. This means the element can receive focus, but is not part of the normal tab ring for the page. Then, the element is set to have focus, and the screen reader can continue from that point.</p>
+          <p>Press <code>TAB</code> to see it in action.</p>
+          
           <h2>Native Javascript</h2>
-<pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
+<pre>window.addEventListener("hashchange", function(event) {
 
-for (var i = 0; i < tabbable.length; i++) {
-  var elem = document.getElementsByTagName(tabbable[i]);
-  for (var j = 0; j < elem.length; j++) {
-    elem[j].setAttribute('tabindex', 0);
-  }
-}
-</pre> 
+    var element = document.getElementById(location.hash.substring(1));
+
+    if (element) {
+
+        if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
+            element.tabIndex = -1;
+        }
+
+        element.focus();
+    }
+
+}, false); </pre> 
         </div>
         <div class="col-sm-4" role="complementary">
-          <h2>Useful Links about Tab Index</h2>
+          <h2>Useful Links about Skip Nav</h2>
+          <ul>
+            <li><a href="http://a11yproject.com/posts/skip-nav-links/">How–to: Use Skip Navigation links</a></li>
+            <li><a href="http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/">Fixing “Skip to content” links</a></li>
+            <li><a href="https://code.google.com/p/chromium/issues/detail?id=37721">Chromium: Skip links do not work when using screenreader.</a></li>
+          </ul>
           
         </div>
       </div>
