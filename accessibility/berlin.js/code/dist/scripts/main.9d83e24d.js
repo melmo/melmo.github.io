@@ -1,1 +1,0 @@
-for(var tabbable=["a","input","select","button","textarea"],i=0;i<tabbable.length;i++)for(var elem=document.getElementsByTagName(tabbable[i]),j=0;j<elem.length;j++)elem[j].setAttribute("tabindex",0);null!==document.getElementById("main")&&document.getElementById("main").setAttribute("tabindex",0);
