@@ -40,8 +40,6 @@
         </ul>
         
       </div>
-
-
       <div class="row">
         <div class="col-sm-8" role="main" id="main">
           <h1>Leaflet.js</h1>
@@ -71,11 +69,15 @@ $('.leaflet-tile-container img, .leaflet-shadow-pane img').attr('role','presenta
 map.on('popupclose',function(popup) {
   $(popup.popup._source._icon).focus();
 });</pre>
+          <p>Chrome doesn't seem to be able to open popups using the enter key, so check if the browser is Chrome and then add <code>role="application"</code> to the map's containing div. (Doing this breaks functionality in Firefox. Still need to check IE.)</p>
+          <pre>if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+  $('#goodmap').attr('role','application');
+}</pre>
           <h2 tabindex="0">Normal Map</h2>
           <div id="badmap" class="leaflet-map">
           </div>
           <h2 tabindex="0">A Better Map</h2>
-          <div id="goodmap" class="leaflet-map" role="application">
+          <div id="goodmap" class="leaflet-map" aria-live="polite">
           </div>
 
         </div>

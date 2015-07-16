@@ -88,6 +88,10 @@ jQuery(document).ready(function($) {
 	}
 
 	function doGoodMap() {
+		if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+			$('#goodmap').attr('role','application');
+		}
+		
 		// create a map in the "map" div, set the view to a given place and zoom
 		var map = L.map('goodmap').setView([52.503602, 13.420131], 12);
 
