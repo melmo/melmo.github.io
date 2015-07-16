@@ -31,6 +31,7 @@
           <li><a href="index.html">WAI Landmark Roles</a></li>
           <li><a href="tabindex.html">Tab Index</a></li>
           <li class="active"><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="screenreadertext.html">Screen Reader Text</a></li>
           <li><a href="leaflet.html">Leaflet</a></li>
           <li><a href="owlcarousel.html">Owl Carousel</a></li>
           <li><a href="isotope.html">Isotope</a></li>
@@ -43,6 +44,26 @@
         <div class="col-sm-8" role="main" id="main">
           <h1>Skip Navigation Link</h1>
           <p>Allows users to skip over the main navigation and jump directly to the main content of the page. There's some debate about whether this is neccessary if you use WAI-ARIA landmarks, but current best practice seems to be to use both.</p>
+          <p>Hide the link unless it is focused with the keyboard with the following css:</p>
+          <pre>.skip-nav {
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  height:0;
+  width:0;
+  overflow:hidden;
+}
+
+.skip-nav:focus {
+  overflow:visible;
+  background:black;
+  padding:5px;
+  color:white;
+  display:block;
+  position: static;
+  width:100%;
+  height:30px;
+}</pre>
           <p>Unfortunately, in some webkit browsers focus is not applied correctly on internal (#hash) links. This means that screen readers don't jump to the correct point when the skip navigation link is clicked/selected with the keyboard. To fix this, use the following javascript polyfill. When an internal link is clicked, the target element is given a tabindex of -1. This means the element can receive focus, but is not part of the normal tab ring for the page. Then, the element is set to have focus, and the screen reader can continue from that point.</p>
           <p>Press <code>TAB</code> to see it in action.</p>
           
@@ -99,6 +120,9 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="/bower_components/owlcarousel/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <!-- endbuild -->
     
 

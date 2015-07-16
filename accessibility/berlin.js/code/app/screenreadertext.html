@@ -29,9 +29,9 @@
         <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
         <ul class="nav nav-pills pull-left" role="navigation">
           <li><a href="index.html">WAI Landmark Roles</a></li>
-          <li class="active"><a href="tabindex.html">Tab Index</a></li>
+          <li><a href="tabindex.html">Tab Index</a></li>
           <li><a href="skipnav.html">Skip Nav</a></li>
-          <li><a href="screenreadertext.html">Screen Reader Text</a></li>
+          <li class="active"><a href="screenreadertext.html">Screen Reader Text</a></li>
           <li><a href="leaflet.html">Leaflet</a></li>
           <li><a href="owlcarousel.html">Owl Carousel</a></li>
           <li><a href="isotope.html">Isotope</a></li>
@@ -42,26 +42,23 @@
 
       <div class="row">
         <div class="col-sm-8" role="main" id="main">
-          <h1>Tab Index</h1>
-          <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p>
-          <p>Setting all elements to <code>tabindex="0"</code> means they will be focused in the order they appear in the document.</p>
-          <h2>jQuery</h2>
-<pre>jQuery(document).ready(function($) {
-  $('a, input, select, button, textarea').attr('tabindex',0);
-});</pre>
-          <h2>Native Javascript</h2>
-<pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
-
-for (var i = 0; i < tabbable.length; i++) {
-  var elem = document.getElementsByTagName(tabbable[i]);
-  for (var j = 0; j < elem.length; j++) {
-    elem[j].setAttribute('tabindex', 0);
-  }
-}
-</pre> 
+          <h1>Screen Reader Text</h1>
+          <p>Sometimes we want to give specific information only to users of screen reader software, for example, interaction instructions or extra context provided by visual elements of the page. Most software will not read out elements hidden with <code>display:none;</code>. The following code snippet allows you to hide text from sighted users but make it available to screen readers.</p>
+          <pre>/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}</pre>
+ 
         </div>
         <div class="col-sm-4" role="complementary">
-          <h2>Useful Links about Tab Index</h2>
+          <h2>Useful Links about Screen Reader Text</h2>
+          <ul>
+            <li><a href=""></a></li>
+          </ul>
           
         </div>
       </div>

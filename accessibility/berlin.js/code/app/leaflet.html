@@ -31,8 +31,9 @@
         <ul class="nav nav-pills pull-left" role="navigation">
           <li><a href="index.html">WAI Landmark Roles</a></li>
           <li><a href="tabindex.html">Tab Index</a></li>
-          <li class="active"><a href="skipnav.html">Skip Nav</a></li>
-          <li><a href="leaflet.html">Leaflet</a></li>
+          <li><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="screenreadertext.html">Screen Reader Text</a></li>
+          <li class="active"><a href="leaflet.html">Leaflet</a></li>
           <li><a href="owlcarousel.html">Owl Carousel</a></li>
           <li><a href="isotope.html">Isotope</a></li>
         </ul>
@@ -43,8 +44,8 @@
       <div class="row">
         <div class="col-sm-8" role="main" id="main">
           <h1>Leaflet.js</h1>
-          <p>Leaflet is an open-source JavaScript library for mobile-friendly interactive maps.</p>
-          <p>With small adaptations, Leaflet.js maps can be made far more accessible. First, we prevent the screen reader from reading out the alt text for every map tile.</p>
+          <p><a href="http://leafletjs.com/">Leaflet</a> is an open-source JavaScript library for mobile-friendly interactive maps. It's an easy to use and powerful library, but it does present some accessibility problems. For example, JAWS reads out the <code>alt</code> description for every map tile, which is confusing.</p>
+          <p>Fortunately, with small adaptations, Leaflet.js maps can be made far more accessible. First, we prevent the screen reader from reading out the alt text for every map tile.</p>
           <pre>// remove the shadow pane (otherwise each shadow image is read out)
 $('.leaflet-shadow-pane').remove();
     
@@ -73,14 +74,14 @@ map.on('popupclose',function(popup) {
           <div id="badmap" class="leaflet-map">
           </div>
           <h2 tabindex="0">A Better Map</h2>
-          <div id="goodmap" class="leaflet-map">
+          <div id="goodmap" class="leaflet-map" role="application">
           </div>
 
         </div>
         <div class="col-sm-4" role="complementary">
           <h2>Useful Links about Leaflet.js</h2>
           <ul>
-            <li><a href=""></a></li>
+            <li><a href="https://github.com/Leaflet/Leaflet/issues/3210">Leaflet Issues: Accessibility improvements</a></li>
           </ul>
           
         </div>
@@ -112,8 +113,9 @@ map.on('popupclose',function(popup) {
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="/bower_components/owlcarousel/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <!-- endbuild -->
     
 

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Better Accessibility with Javascript | Code Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css() styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/owlcarousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/bower_components/owlcarousel/owl-carousel/owl.theme.css">
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <a href="#main" class="skip-nav">Skip navigation</a>
+    <div class="container">
+      <div class="header" role="banner">
+        <h3 class="text-muted">Better Accessibility with Javascript | Code Demo</h3>
+        <ul class="nav nav-pills pull-left" role="navigation">
+          <li><a href="index.html">WAI Landmark Roles</a></li>
+          <li><a href="tabindex.html">Tab Index</a></li>
+          <li><a href="skipnav.html">Skip Nav</a></li>
+          <li><a href="screenreadertext.html">Screen Reader Text</a></li>
+          <li><a href="leaflet.html">Leaflet</a></li>
+          <li class="active"><a href="owlcarousel.html">Owl Carousel</a></li>
+          <li><a href="isotope.html">Isotope</a></li>
+        </ul>
+        
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-8" role="main" id="main">
+          <h1>Owl Carousel</h1>
+          <p><a href="http://owlgraphic.com/owlcarousel/">Owl Carousel</a> is a jQuery plugin for creating responsive carousel sliders. We can improve its accessibility by making the controls respond to keyboard events or making the carousel items able to receive focus.</p>
+          
+          <h2>Single Item Per Page</h2>
+          <p>If the carousel has only a single item per page, we can set up the carousel to listen for the left and right arrow keys when the carousel has focus, and use these to navigate through the carousel. We can also allow the prev and next buttons to receive focus, and listen for the <code>Enter</code> key when they are in focus.</p>
+          <p>In addition, the visible item is given the attribute <code>aria-selected="true"</code> and instructions to keyboard users are shown only when the carousel is focused.</p>
+          <div id="owl-single-example" class="owl-carousel">
+            <div class="carousel-item" style="background:green;"></div>
+            <div class="carousel-item" style="background:yellow;" ></div>
+            <div class="carousel-item" style="background:orange;" ></div>
+            <div class="carousel-item" style="background:red;" ></div>
+            <div class="carousel-item" style="background:purple;" ></div>
+            <div class="carousel-item" style="background:blue;" ></div>
+          </div>
+<pre>$("#owl-single-example").owlCarousel({
+  singleItem : true,
+  pagination : false,
+  navigation : true, // show next and previous buttons
+  addClassActive : true, // visible items have class active
+  afterInit : function() { 
+
+    $('#owl-single-example .owl-item').attr('aria-selected','false');
+    $('#owl-single-example .owl-item.active').attr('aria-selected','true'); // let screen readers know an item is active
+
+    // apply meta info to next and previous buttons and make them focusable
+    $('#owl-single-example .owl-prev').attr('role','button').attr('title','Previous');
+    $('#owl-single-example .owl-next').attr('role','button').attr('title','Next');
+    $('#owl-single-example, .owl-prev, .owl-next').attr('tabindex','0');
+
+    // add instructions to keyboard users that are only visible when the carousel is focused
+    $('#owl-single-example .owl-wrapper-outer').append('<p class="alert alert-success show-on-focus">Use left and right arrow keys to navigate.</p>');
+
+    // listen for keyboard input
+    $(document).on('keydown', function(e){
+
+        var $focusedElement = $(document.activeElement),
+        singleOwl = $("#owl-single-example").data('owlCarousel'),
+            type = e.which == 39? 'next': null,
+            type = e.which == 37? 'prev': type,
+            type = e.which == 13? 'enter':type;
+
+        // if the carousel is focused, use left and right arrow keys to navigate
+        if($focusedElement.attr('id') === 'owl-single-example'){
+
+          if (type == 'next') {
+            singleOwl.next();
+          } else if (type == 'prev') {
+            singleOwl.prev();
+          }
+
+        // if the prev and next buttons are focused, catch "Enter" and navigate in the right direction
+        } else if (type == 'enter') {
+        if ($focusedElement.hasClass('owl-next')) {
+          singleOwl.next();
+        } else if ($focusedElement.hasClass('owl-prev')) {
+          singleOwl.prev();
+        }
+      }
+  });
+},
+// let screen readers know which slide is active after navigation or reinit
+afterAction : function() {
+  $('#owl-single-example .owl-item').attr('aria-selected','false');
+  $('#owl-single-example .owl-item.active').attr('aria-selected','true');
+}
+});</pre> 
+          
+          <h2>Multiple Items Per Page</h2>
+          <p>With multiple slider items per page, this design pattern doesn't work as well, because multiple items at any one time need to be given <code>aria-selected="true"</code>. Instead, we can give a <code>tabindex</code> to the items themselves, allowing keyboard users to tab through the slides.</p>
+          <div id="owl-multi-example" class="owl-carousel">
+            <div class="carousel-item" style="background:green;"></div>
+            <div class="carousel-item" style="background:yellow;" ></div>
+            <div class="carousel-item" style="background:orange;" ></div>
+            <div class="carousel-item" style="background:red;" ></div>
+            <div class="carousel-item" style="background:purple;" ></div>
+            <div class="carousel-item" style="background:blue;" ></div>
+          </div>
+<pre>$("#owl-multi-example").owlCarousel({
+
+  pagination : false, // must be set to false or the carousel won't move to bring out of sight elements into view on focus
+  navigation : false, 
+
+  afterInit : function() { 
+    // make individual items focusable
+    $('#owl-multi-example .owl-item').attr('aria-selected','false').attr('tabindex','0');
+    $('#owl-multi-example').attr('tabindex','0');
+
+    // on when an item has focus, let screen readers know it is active
+    $('#owl-multi-example .owl-item').on('focus',function() {
+      $('#owl-multi-example .owl-item').attr('aria-selected','false');
+      $(this).attr('aria-selected','true');
+    });
+
+    // show instructions to keyboard users when the carousel is focused
+    $('#owl-multi-example .owl-wrapper-outer').append('<p class="alert alert-success show-on-focus">Use tab and shift+tab to navigate.</p>');
+
+  }
+
+});</pre> 
+          
+        </div>
+        
+        <div class="col-sm-4" role="complementary">
+          <h2>Useful Links about Skip Nav</h2>
+          <ul>
+            <li><a href="http://a11yproject.com/posts/skip-nav-links/">How–to: Use Skip Navigation links</a></li>
+            <li><a href="http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/">Fixing “Skip to content” links</a></li>
+            <li><a href="https://code.google.com/p/chromium/issues/detail?id=37721">Chromium: Skip links do not work when using screenreader.</a></li>
+          </ul>
+          
+        </div>
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <p>&copy; 2015 <a href="http://littlewebgiants.com">Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="http://melmo.github.io/accessibility/berlin.js/slides/">Slides</a> </p>
+      </div>
+    </div>
+    
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="/bower_components/owlcarousel/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <!-- endbuild -->
+    
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>
