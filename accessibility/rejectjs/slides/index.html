@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Better Accessibility with Javascript | Slides</title>
+
+		<meta name="description" content="Some good practices and code fragments for inproving accessbility of javascript website features">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/rejectjs.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-state="homepage">
+					<h1><br>Better Accessibility with Javascript</h1>
+					<h3>Code Fragments and Common Libraries</h3>
+					<p>
+						<small>upfront | 8 December 2015 | <a href="http://littlewebgiants.com">Melanie Thewlis</a> | <a href="http://twitter.com/littlewebgiants">@littlewebgiants</a></small>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>What do we mean by accessibility?</h2>
+						<p>Categoring for people with disabilities:</p>
+						<ul style="float:left;">
+							<li>Visual</li>
+							<li>Auditory</li>
+							<li>Cognitive</li>
+							<li>Motor</li>
+						</ul>
+						<img style="float:right;display:block;" src="lib/img/all-disabilities-small.png">
+					</section>
+					<section>
+						<p>We tend to think of these groups as being served by specific technologies or approaches:</p>
+						<div style="float:left;width:50%;">
+							<h4>Visual</h4>
+							<ul>
+								<li>Screen readers</li>
+								<li>Highly legible designs</li>
+							</ul>
+
+							<h4>Auditory</h4>
+							<ul>
+								<li>Subtitles or alternate text for videos</li>
+							</ul>
+						</div>
+						<img style="float:right;display:block;width:50%;" src="lib/img/JAWS_16.png">
+					</section>
+					<section>
+						<div style="float:left;width:50%;">
+							<h4>Cognitive</h4>
+							<ul>
+								<li>Alternative content using simple text and images</li>
+								<li>Formally legislated as "Leichte Sprache" in Germany</li>
+							</ul>
+							<h4>Motor</h4>
+							<ul>
+								<li>Keyboard navigation</li>
+							</ul>
+						</div>
+						<img style="float:right;display:block;width:50%;" src="lib/img/Leichte_sprache_logo.png">
+					</section>
+					<section data-state="diversity">
+						<p>Thinking about accessibility is more than thinking about disabilities.</p>
+						<p>We should also consider age, education and cultural differences in our audience.</p>
+						<p>Internet bandwidth may also be an accessbility issue.</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Guidelines, legal frameworks, and ethical and practical issues</h2>
+					</section>
+					<section>
+						<p>The UN Convention on the Rights of Persons with Disabilities recognizes access to information and communications technologies, including the Web, as a basic human right.</p>
+						<p>Legislative frameworks exist in many countries, including Germany, the UK and the US. These typically apply to government organisations and organisations that receive state funding.</p>
+						<p>However it can be hard to find practical examples of how to make web sites and applications accessible, especially if you are retrofitting an existing app or CMS.</p>
+					</section>
+					<section>
+						
+						<p style="text-align:center;"><img src="lib/img/w3c.png"></p>
+						<p>The W3C has a nice <a href="http://www.w3.org/standards/webdesign/accessibility">introduction</a> to the importance of web accessibility and a number of working groups developing standards for accessibility.</p>
+						<p>The most relevant standards for us are WCAG and WAI-ARIA.</p>
+					</section>
+					<section>
+						<h3>Web Content Accessibility Guidelines (WCAG)</h3>
+						<a href="http://www.w3.org/standards/techs/wcag#w3c_all">http://www.w3.org/standards/techs/wcag#w3c_all</a>
+						<p>Set of recommendations for making web content more accessible, made up of testable statements that are not technology-specific.</p>
+					</section>
+					<section>
+						<ul>
+							<li><strong>Perceivable</strong> - present content in different ways, e.g. text alternatives for images and video.</li>
+							<li><strong>Operable</strong> - keyboard navigation, clear navigation structures.</li>
+							<li><strong>Understandable</strong> - web pages should behave in predictable ways and provide user feedback.</li>
+							<li><strong>Robust</strong> - compatible with current and future user agents.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Web Content Accessibility Guidelines (WCAG)</h3>
+						<p>The specification is divided into 3 priority levels (A to AAA). A is an absolute minimum for accessibility.</p>
+						<p>WCAG form the basis for most relevant legislation and guidelines, including the UK, EU,  and Germany.</p>
+					</section>
+					<section>
+						<h3>Accessible Rich Internet Applications (WAI-ARIA)</h3>
+						<a href="http://www.w3.org/standards/techs/aria#w3c_all">http://www.w3.org/standards/techs/aria#w3c_all</a>
+						<p>WAI-ARIA is a response to the increasing complexity of web applications. As websites are no longer comprised of static documents, assistive technologies need to be informed of the role of various elements in the document (e.g. navigation, search, filtering) and of their state (new content has been loaded, a user feedback message has appeared).</p>
+					</section>
+					<section>
+						<h3>Accessible Rich Internet Applications (WAI-ARIA)</h3>
+						<p>Landmark roles are useful and widely adopted. Use these to specify the purpose of parts of a website (e.g. navigation, main content, additional content).</p>
+						<p>Widgets and application markup provide semantic information about state changes in web applications. The documentation is quite abstract and there aren't many practical examples out there. Also support by assistive technologies is still inconsistent.</p>
+						<p><a href="http://hanshillen.github.io/jqtest/">Accessible jQuery-ui Components Demonstration</a> has some interesting examples.</p>
+					</section>
+					<section>
+						<h3>German Legislation - BITV 2.0</h3>
+						<a href="http://www.barrierefreies-webdesign.de/bitv/bitv-2.0.html">http://www.barrierefreies-webdesign.de/bitv/bitv-2.0.html</a>
+						<h4>Anlage 1</h4>
+						<p>Technical specification that draws heavily on the WCAG standards, covering things like alt attributes on images and title attributes on links, keyboard navigation and user feedback.</p>
+						<p>Divided into Priorit&auml;t 1 (less onerous) and Priorit&auml;t 2 (more onerous).</p>
+						<p>Online <a href="http://www.bitvtest.eu/bitv_test.html">self assessments</a> are available, or you can pay for an audit.</p>
+					</section>
+					<section>
+						<h3>German Legislation - BITV 2.0</h3>
+						<h4>Anlage 2</h4>
+						<p>Specifies the minimum amount of site content that should be made available in simple text and sign language. To fulfill these requirements you will need to work with certified professionals.</p>
+					</section>
+					<section>
+						<h3>UK Legislation - Disability Discrimination Act & PAS 78</h3>
+						<p><a href="http://www.legislation.gov.uk/ukpga/1995/50/contents">Disability Discrimination Act</a></p>
+						<p><a href="http://www.equalityhumanrights.com/sites/default/files/publication_pdf/pas78.pdf">PAS 78: Guide to good practice in commissioning accessible websites</a></p>
+						<p>The DDA legislation is also based on the WCAG standards.</p>
+						<p>The PAS is an extra document that provides non-technical advice on commissioning, planning, designing and testing an accessible website.</p>
+					</section>
+					<section>
+						<h3>UK Legislation - Disability Discrimination Act & PAS 78</h3>
+						<p>The PAS is a really useful and practical document that recognises that implementing WCAG could be too hard or expensive for certain organisations.</p>
+						<p>Instead it advises organisations to identify the "core tasks" that users will complete on the website, and make sure these tasks can be achieved by all users. There's a focus on user profiles, use cases and task oriented testing.</p>
+						<p>From this it should be clear that good accessibility design = good usability design.</p>
+					</section>
+				</section>
+				<section>
+					<h2>WAI Landmark Roles</h2>
+					
+<pre style="font-size:.75em;"><code>
+  &lt;header role=&quot;header&quot; id=&quot;main-header&quot;&gt;
+	It's a header!
+  &lt;/header&gt;
+
+</code></pre>
+					
+					<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/index.html">http://melmo.github.io/accessibility/berlin.js/code/dist/index.html</a>
+				</section>
+				<section>
+					<section>
+						<h2>Some Handy Code Fragments</h2>
+					</section>
+					<section>
+						<h3>Logical tab index</h3>
+<pre style="font-size:.75em;"><code>
+  jQuery(document).ready(function($) {
+    $('a, input, select, button, textarea').attr('tabindex',0);
+  });
+
+</code></pre>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/tabindex.html">http://melmo.github.io/accessibility/berlin.js/code/dist/tabindex.html</a>
+					</section>
+					<section>
+						<h3>Skip navigation</h3>
+<pre style="font-size:.75em;"><code>
+  .skip-nav {
+	position:fixed;
+	top:0px;
+	bottom:0px;
+	height:0;
+	width:0;
+	overflow:hidden;
+  }
+
+  .skip-nav:focus {
+	overflow:visible;
+	background:black;
+	padding:5px;
+	color:white;
+	display:block;
+	position: static;
+	width:100%;
+	height:30px;
+  }
+</code></pre>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/skipnav.html">http://melmo.github.io/accessibility/berlin.js/code/dist/skipnav.html</a>
+					</section>
+					<section>
+						<h3>Screen reader text</h3>
+<pre style="font-size:.75em;"><code>
+  /* Text meant only for screen readers. */
+  .screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+  }
+</code></pre>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/screenreadertext.html">http://melmo.github.io/accessibility/berlin.js/code/dist/screenreadertext.html</a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Adapting Popular Libraries</h2>
+					</section>
+					<section>
+						<h3>Leaflet</h3>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/leaflet.html">http://melmo.github.io/accessibility/berlin.js/code/dist/leaflet.html</a>
+					</section>
+					<section>
+						<h3>Owl Carousel</h3>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/owlcarousel.html">http://melmo.github.io/accessibility/berlin.js/code/dist/owlcarousel.html</a>
+					</section>
+					<section>
+						<h3>Isotope</h3>
+						<a href="http://melmo.github.io/accessibility/berlin.js/code/dist/isotope.html">http://melmo.github.io/accessibility/berlin.js/code/dist/isotope.html</a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Testing</h2>
+						<img src="lib/img/tests.png">
+					</section>
+					<section>
+						<h3>Functionality testing</h3>
+						<ul>
+							<li>Windows - JAWS - Chrome, Firefox and IE behave differently (hooray!)</li>
+							<li>Mac - VoiceOver - Cmd + F5 to get started</li>
+							<li>Tablets and phones</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Task based testing</h3>
+						<ul>
+							<li>Encourage error detection!</li>
+							<li>Set goal based tasks for your testers.</li>
+							<li>E.g. make a booking, find a contact number, research a piece of information.</li>
+							<li>Elicit feedback on whether they were successful, if not why not, and how the process could be improved.</li>
+							<li>Also ask for general feedback/critique.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h3>Thanks for listening :D</h3>
+				</section>
+				<section>
+					<h3>Image Credits</h3>
+					<ul>
+						<li>Alternative Handicapped Accessible sign<br>Sara Hendren & Brian Glenney - <a href="http://www.accessibleicon.org">http://www.accessibleicon.org</a><br><a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></li>
+						<li>„Leichte sprache logo“ von Inclusion Europe - http://www.inclusion-europe.org. Lizenziert unter Logo über Wikipedia - https://de.wikipedia.org/wiki/Datei:Leichte_sprache_logo.svg#/media/File:Leichte_sprache_logo.svg</li>
+						<li>JAWS screen reader software - <a href="http://www.softpedia.com/get/Others/Home-Education/JAWS.shtml">Softpedia</a></li>
+						<li>Blackbox image by "Frap" at Wikimedia Commons, released into the public domain. Whitebox image by "Pluke" at Wikimedia Commons, distributed under a CC0 1.0 Universal Public Domain Dedication.
+						</li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

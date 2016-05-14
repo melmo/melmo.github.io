@@ -1,0 +1,92 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+$linkColor:#ce1e46;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+body,h1, h2, h3, h4, h5, h6, ul, ol, .reveal .slides {
+	text-align:left;
+}
+
+.reveal section img {
+	border:none;
+	box-shadow:none;
+}
+.homepage  {
+	background-color:white;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ce1e46+0,ce1e46+50,ffffff+51,ffffff+100 */
+background: -moz-linear-gradient(top,  #ce1e46 0%, #ce1e46 100px, #ffffff 100px, #ffffff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ce1e46), color-stop(100px,#ce1e46), color-stop(100px,#ffffff), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ce1e46 0%,#ce1e46 100px,#ffffff 100px,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ce1e46 0%,#ce1e46 100px,#ffffff 100px,#ffffff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ce1e46 0%,#ce1e46 100px,#ffffff 100px,#ffffff 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ce1e46 0%,#ce1e46 100px,#ffffff 100px,#ffffff 100%); /* W3C */
+
+
+}
+
+.homepage body{
+	background:white url(../../lib/img/reject-logo.png) 30px 30px no-repeat;
+	background-size:200px;
+}
+
+.reveal {
+	background:white url(../../lib/img/access-icon.png) left 130px  no-repeat;
+	background-size:contain;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  margin: 20px 0 0 0;
+}
+
+.diversity section {
+	background:url(../../lib/img/diversity.png) center right no-repeat;
+	background-size:contain;
+	p {
+		width:60%;
+	}
+}
