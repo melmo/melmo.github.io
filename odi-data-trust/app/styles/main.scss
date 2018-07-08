@@ -1,6 +1,23 @@
 // bower:scss
 // endbower
 
+img {
+  max-width: 100%;
+  height:auto;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.main {
+  max-width:42rem;
+}
+
+h2 {
+  border-bottom:1px solid #ddd;
+  margin-bottom:1rem;
+  margin-top:2rem;
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
