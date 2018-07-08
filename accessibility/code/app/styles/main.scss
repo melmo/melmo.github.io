@@ -1,8 +1,9 @@
 $font-size-base:          16px !default;
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-@import "../../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 /*

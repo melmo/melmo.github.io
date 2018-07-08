@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html> <head> <meta charset=utf-8> <title>Better Accessibility with Javascript | Code Demo</title> <meta name=description content=""> <meta name=viewport content="width=device-width,initial-scale=1"> <link rel="shortcut icon" href=/favicon.b25e58c4.ico> <link rel=apple-touch-icon href=/apple-touch-icon.9727d3c2.png> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel=stylesheet href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"> <link rel=stylesheet href=styles/vendor.81b15023.css> <link rel=stylesheet href=styles/main.b75df1aa.css>  <body> <!--[if lt IE 10]>
+<!DOCTYPE html> <html> <head> <meta charset=utf-8> <title>Better Accessibility with Javascript | Code Demo</title> <meta name=description content=""> <meta name=viewport content="width=device-width,initial-scale=1"> <link rel="shortcut icon" href=/favicon.b25e58c4.ico> <link rel=apple-touch-icon href=/apple-touch-icon.9727d3c2.png> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel=stylesheet href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"> <link rel=stylesheet href=styles/vendor.d41d8cd9.css> <link rel=stylesheet href=styles/main.53fd120c.css>  <body> <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]--> <a href=#main class=skip-nav>Skip navigation</a> <div class=container> <div class=header role=banner> <h3 class=text-muted>Better Accessibility with Javascript | Code Demo</h3> <ul class="nav nav-pills pull-left" role=navigation> <li><a href=index.html>WAI Landmark Roles</a></li> <li class=active><a href=tabindex.html>Tab Index</a></li> <li><a href=skipnav.html>Skip Nav</a></li> <li><a href=screenreadertext.html>Screen Reader Text</a></li> <li><a href=leaflet.html>Leaflet</a></li> <li><a href=owlcarousel.html>Owl Carousel</a></li> <li><a href=isotope.html>Isotope</a></li> </ul> </div> <div class=row> <div class=col-sm-8 role=main id=main> <h1>Tab Index</h1> <p>Add a logical tab index. This is particularly important if you are working with content from a CMS or you don't have full control of the source code.</p> <p>Setting all elements to <code>tabindex="0"</code> means they will be focused in the order they appear in the document.</p> <h2>jQuery</h2> <pre>jQuery(document).ready(function($) {
   $('a, input, select, button, textarea').attr('tabindex',0);
@@ -10,7 +10,19 @@ for (var i = 0; i &lt; tabbable.length; i++) {
     elem[j].setAttribute('tabindex', 0);
   }
 }
-</pre> </div> <div class=col-sm-4 role=complementary> <h2>Useful Links about Tab Index</h2> </div> </div> <div class=footer role=contentinfo> <p>&copy; 2015 <a href=http://littlewebgiants.com>Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="http://melmo.github.io/accessibility/berlin.js/slides/">Slides</a> </p> </div> </div> <script src=scripts/vendor.5259f88d.js></script> <script src=http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js></script> <script src=scripts/plugins.34c626f3.js></script> <script src=scripts/main.4b29a398.js></script> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> <script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+</pre> <p>Alternatively, you can leave any elements that already have a tabindex set as they are and set all other focusable elements to tabindex 0. The elements with a positive tabindex will be navigated to first, in ascending order, followed by elements with tabindex 0. See the <a href=https://www.w3.org/TR/html401/interact/forms.html#adef-tabindex>W3C documentation</a> for reference.</p> <h2>jQuery</h2> <pre>jQuery(document).ready(function($) {
+  $('a, input, select, button, textarea').not('[tabindex]').attr('tabindex',0);
+});</pre> <h2>Native Javascript</h2> <pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
+
+for (var i = 0; i &lt; tabbable.length; i++) {
+  var elem = document.getElementsByTagName(tabbable[i]);
+  for (var j = 0; j &lt; elem.length; j++) {
+    if(!elem[j].hasAttribute("tabindex")) { /* do not edit existing tabindex */
+      elem[j].setAttribute('tabindex', 0);
+    }
+  }
+}
+</pre> </div> <div class=col-sm-4 role=complementary> <h2>Useful Links about Tab Index</h2> </div> </div> <div class=footer role=contentinfo> <p>&copy; 2015 <a href=https://melaniethewlis.com>Melanie Thewlis</a> | Example Code for Better Accessibility with Javascript | <a href="https://melmo.github.io/accessibility/slides/">Slides</a> </p> </div> </div> <script src=scripts/vendor.c2b8d01f.js></script> <script src=http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js></script> <script src=scripts/plugins.cb7562c6.js></script> <script src=scripts/main.4b29a398.js></script> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> <script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='https://www.google-analytics.com/analytics.js';
