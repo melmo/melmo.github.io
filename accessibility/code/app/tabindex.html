@@ -49,7 +49,7 @@
           <p>Setting all elements to <code>tabindex="0"</code> means they will be focused in the order they appear in the document.</p>
           <h2>jQuery</h2>
 <pre>jQuery(document).ready(function($) {
-  $('a, input, select, button, textarea').attr('tabindex',0);
+  $('a, input, select, button, textarea').not('[tabindex]').attr('tabindex',0);
 });</pre>
           <h2>Native Javascript</h2>
 <pre>var tabbable = ['a', 'input', 'select', 'button', 'textarea'];
@@ -57,7 +57,14 @@
 for (var i = 0; i &lt; tabbable.length; i++) {
   var elem = document.getElementsByTagName(tabbable[i]);
   for (var j = 0; j &lt; elem.length; j++) {
-    elem[j].setAttribute('tabindex', 0);
+    if(elem[j].hasAttribute("tabindex"))
+    {
+      /* do not edit existing tabindex */
+    }
+    else
+    {
+      elem[j].setAttribute('tabindex', 0);
+    }
   }
 }
 </pre> 
